@@ -15,7 +15,8 @@
                 <span class="text-white text-xs app-name">File Explorer</span>
             </button>
             <button class="flex flex-col justify-center items-center w-24 h-28 hover:bg-white hover:bg-opacity-30 rounded-sm duration-200 cursor-auto">
-                <img src="@/assets/icons/store-dark.png" width="43" height="43">
+                <img src="@/assets/icons/store-dark.png" width="43" height="43" v-if="!isDarkMode">
+                <img src="@/assets/icons/store-light.png" width="43" height="43" v-else>
                 <span class="text-white text-xs app-name">Microsoft Store</span>
             </button>
             <button class="flex flex-col justify-center items-center w-24 h-28 hover:bg-white hover:bg-opacity-30 rounded-sm duration-200 cursor-auto">
@@ -24,64 +25,66 @@
             </button>
         </div>
 
-        <div class="task-bar w-full bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg flex justify-center">
+        <div class="task-bar w-full bg-white bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg flex justify-center">
 
             <div class="flex gap-2 p-1">
-                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 duration-200 cursor-auto">
+                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 dark:hover:bg-gray-500 duration-200 cursor-auto">
                     <img class="transform active:scale-75 duration-150" src="@/assets/icons/start.png" width="22" height="22">
                 </button>
-                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 duration-200 cursor-auto">
-                    <img class="transform active:scale-75 duration-150" src="@/assets/icons/search.png" width="22" height="22">
+                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 dark:hover:bg-gray-500 duration-200 cursor-auto">
+                    <img class="transform active:scale-75 duration-150" src="@/assets/icons/search-light.png" width="22" height="22" v-if="isDarkMode">
+                    <img class="transform active:scale-75 duration-150" src="@/assets/icons/search-dark.png" width="22" height="22" v-else>
                 </button>
-                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 duration-200 cursor-auto">
+                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 dark:hover:bg-gray-500 duration-200 cursor-auto">
                     <img class="transform active:scale-75 duration-150" src="@/assets/icons/widget.png" width="22" height="22">
                 </button>
-                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 duration-200 cursor-auto">
+                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 dark:hover:bg-gray-500 duration-200 cursor-auto">
                     <img class="transform active:scale-75 duration-150" src="@/assets/icons/settings.png" width="22" height="22">
                 </button>
-                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 duration-200 cursor-auto">
+                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 dark:hover:bg-gray-500 duration-200 cursor-auto">
                     <img class="transform active:scale-75 duration-150" src="@/assets/icons/explorer.png" width="22" height="22">
                 </button>
-                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 duration-200 cursor-auto">
+                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 dark:hover:bg-gray-500 duration-200 cursor-auto">
                     <img class="transform active:scale-75 duration-150" src="@/assets/icons/edge.png" width="22" height="22">
                 </button>
-                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 duration-200 cursor-auto">
-                    <img class="transform active:scale-75 duration-150" src="@/assets/icons/store-dark.png" width="25" height="25">
+                <button class="rounded-sm px-1.5 hover:bg-white hover:bg-opacity-80 dark:hover:bg-gray-500 duration-200 cursor-auto">
+                    <img class="transform active:scale-75 duration-150" src="@/assets/icons/store-dark.png" width="25" height="25" v-if="!isDarkMode">
+                    <img class="transform active:scale-75 duration-150" src="@/assets/icons/store-light.png" width="25" height="25" v-else>
                 </button>
             </div>
 
             <div class="flex absolute right-0 bottom-0 h-full hidden md:flex">
                 <div class="inline-flex justify-center items-center w-8 h-full">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 10px; height: 10px;">
-                        <path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z"></path>
+                        <path fill="currentColor" :class="{ 'text-white': isDarkMode }" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z"></path>
                     </svg>
                 </div>
                 <div class="inline-flex justify-center items-center w-8 h-full">
-                    <img width="16" src="@/assets/ui/battery.png"/>
+                    <img width="16" src="@/assets/ui/battery.png" :class="{ 'filter invert': isDarkMode }"/>
                 </div>
                 <div class="inline-flex justify-center items-center w-8 h-full">
-                    <img width="22" src="@/assets/ui/audio.png"/>
+                    <img width="22" src="@/assets/ui/audio.png" :class="{ 'filter invert': isDarkMode }"/>
                 </div>
-                <div class="flex flex-col text-xs justify-center items-center px-2">
-                    <span>{{ today.date }}</span>
+                <div class="flex flex-col text-xs justify-center items-center px-2" :class="{ 'text-white': isDarkMode}">
                     <span>{{ today.time }}</span>
+                    <span>{{ today.date }}</span>
                 </div>
-                <div class="inline-flex justify-center items-center w-8 h-full hover:bg-gray-300 duration-100" @click="toggleNotificationCenter()">
-                    <img width="16" src="@/assets/ui/notification-center.png" class="filter invert"/>
+                <div class="inline-flex justify-center items-center w-8 h-full hover:bg-gray-300 dark:hover:bg-gray-600 duration-100" @click="toggleNotificationCenter()">
+                    <img width="16" src="@/assets/ui/notification-center.png" :class="{ 'filter invert': !isDarkMode }"/>
                 </div>
-                <div class="h-full w-2 border-l border-gray-300 ml-2"></div>
+                <div class="h-full w-2 border-l border-gray-300 dark:border-gray-600 ml-2"></div>
             </div>
 
         </div>
 
-        <div class="notification-center bg-white absolute bg-opacity-80 backdrop-filter backdrop-blur-lg duration-150 flex flex-col" :class="{ 'show': isNotificationCenterShown }">
-            <div class="text-right text-xs p-3">Manage notifications</div>
+        <div class="notification-center absolute bg-white dark:bg-gray-600 bg-opacity-80 backdrop-filter backdrop-blur-lg duration-150 flex flex-col" :class="{ 'show': isNotificationCenterShown }">
+            <div class="text-right text-xs p-3 text-gray-600 dark:text-gray-200">Manage notifications</div>
             <div class="flex justify-center items-center flex-1">
-                <span class="text-xs">No new notifications</span>
+                <span class="text-xs text-gray-600 dark:text-gray-200">No new notifications</span>
             </div>
             <div class="control-center grid grid-cols-4 gap-1 p-4">
-                <button class="flex flex-col gap-3 bg-white px-1 pt-2 pb-1 duration-150" v-for="(item, index) in controlCenterItems" :key="index" @click="item.active = !item.active; item.click" :class="{ 'bg-blue-600 text-white': item.active }">
-                    <img :src="item.icon" width="14" class="duration-150" :class="{ 'filter invert': item.active }"/>
+                <button class="flex flex-col gap-3 bg-white dark:bg-gray-500 dark:text-white px-1 pt-2 pb-1 duration-150" v-for="(item, index) in controlCenterItems" :key="index" @click="item.active = !item.active; item.click()" :class="{ 'bg-blue-600 dark:bg-blue-500 text-white': item.active }">
+                    <img :src="item.icon" width="14" class="duration-150" :class="{ 'filter invert': item.active || isDarkMode }"/>
                     <span>{{ item.label }}</span>
                 </button>
             </div>
@@ -97,6 +100,7 @@ export default {
     name: 'Home',
     data() {
         return {
+            isDarkMode: false,
             today: {},
             isNotificationCenterShown: false,
 
@@ -126,7 +130,6 @@ export default {
         toggleNotificationCenter() {
             this.isNotificationCenterShown = !this.isNotificationCenterShown
         },
-
         toggleDarkMode() {
             this.isDarkMode = !this.isDarkMode
             document.documentElement.classList.remove('dark')
@@ -148,6 +151,12 @@ export default {
     background-image: url('../assets/wallpapers/light.jpg');
     background-position: center;
     background-size: cover;
+}
+
+.dark {
+    .desktop {
+        background-image: url('../assets/wallpapers/dark.jpg');
+    }
 }
 
 .task-bar {

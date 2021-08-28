@@ -28,5 +28,10 @@ html, body {
     user-select: none;
 }
 
+.text-2xs {
+    font-size: 0.65rem;
+    line-height: 0.8rem;
+}
+
 
 </style>

@@ -1,24 +1,26 @@
-# windows11
+# Windows 11 - Vue.js
+Windows 11 simulator built with modern web technologies, Vue.js for the main framework, Tailwind as css framework, Vuex, Scss..
 
-## Project setup
-```
-npm install
-```
+## Live Demo
+[https://bilalbentoumi.github.io/win11-vue](https://bilalbentoumi.github.io/win11-vue)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+For better experience use Google Chrome browser.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Blur not working in Firefox browser.
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Screenshots
+![pic1](./public/screenshots/light.png) ![pic2](./public/screenshots/dark.png)
+
+## Features
+- Light / Dark modes
+- Start menu
+- Notification center
+
+## Technologies
+- Vue.js v3
+- Tailwind CSS
+- Vuex
+
+## License
+CC0-1.0 License

@@ -17,7 +17,7 @@
                 <div class="grid grid-cols-6">
                     <div v-for="(item, index) in apps" :key="index" class="flex flex-col justify-center items-center gap-1 py-2 hover:bg-white hover:bg-opacity-50 dark:hover:bg-opacity-10 rounded-sm duration-150">
                         <img :src="item.icon" width="24"/>
-                        <span class="text-2xs font-medium text-gray-800 dark:text-gray-300 text-center">{{ item.label }}</span>
+                        <span class="text-2xs font-medium text-gray-800 dark:text-gray-200 text-center">{{ item.label }}</span>
                     </div>
                 </div>
             </div>
@@ -38,8 +38,8 @@
                     <div v-for="(item, index) in recommendedApps" :key="index" class="flex gap-3 py-3 px-6">
                         <img :src="item.icon" width="24"/>
                         <div class="flex flex-col">
-                            <span class="text-2xs font-medium text-gray-800 dark:text-gray-300">{{ item.label }}</span>
-                            <span class="text-2xs font-medium text-gray-500 dark:text-white dark:text-opacity-30">1h ago</span>
+                            <span class="text-2xs font-medium text-gray-800 dark:text-gray-200">{{ item.label }}</span>
+                            <span class="text-2xs font-medium text-gray-500 dark:text-white dark:text-opacity-30">{{ item.subLabel }}</span>
                         </div>
                     </div>
                 </div>
@@ -93,12 +93,12 @@ export default {
             ],
 
             recommendedApps: [
-                { label: 'Edge', icon: require('@/assets/icons/edge.png'), active: false, click: null },
-                { label: 'Word', icon: require('@/assets/icons/word.png'), active: false, click: null },
-                { label: 'Mail', icon: require('@/assets/icons/mail.png'), active: false, click: null },
-                { label: 'Photos', icon: require('@/assets/icons/photos.png'), active: false, click: null },
-                { label: 'VS Code', icon: require('@/assets/icons/vscode.png'), active: false, click: null },
-                { label: 'Terminal', icon: require('@/assets/icons/terminal.png'), active: false, click: null },
+                { label: 'Edge', subLabel: '17min ago', icon: require('@/assets/icons/edge.png'), active: false, click: null },
+                { label: 'Word', subLabel: '1h ago', icon: require('@/assets/icons/word.png'), active: false, click: null },
+                { label: 'Mail', subLabel: '12h ago', icon: require('@/assets/icons/mail.png'), active: false, click: null },
+                { label: 'Terminal', subLabel: '1h ago', icon: require('@/assets/icons/terminal.png'), active: false, click: null },
+                { label: 'VS Code', subLabel: 'Yesterday at 4:24 PM', icon: require('@/assets/icons/vscode.png'), active: false, click: null },
+                { label: 'Photos', subLabel: 'Last week', icon: require('@/assets/icons/photos.png'), active: false, click: null },
             ]
 
         }
@@ -116,7 +116,7 @@ export default {
     opacity: 0;
     pointer-events: none;
     transform: translateX(-50%) scale(0.9);
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .start-menu.show {

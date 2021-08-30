@@ -1,13 +1,17 @@
 module.exports = {
-  purge: { content: ['./public/**/*.html', './src/**/*.vue'] },
-  darkMode: 'class', // or 'media' or 'class'
-  theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {
-        scale: ['responsive', 'hover', 'focus', 'active', 'group-hover']
+    purge: {content: ['./public/**/*.html', './src/**/*.vue']},
+    darkMode: 'class', // or 'media' or 'class'
+    theme: {
+        extend: {
+            fontSize: {
+                '2xs': ['0.65rem', '0.8rem'],
+            },
+        },
     },
-  },
-  plugins: [],
+    variants: {
+        extend: {
+            scale: ['responsive', 'hover', 'focus', 'active', 'group-hover']
+        },
+    },
+    plugins: [],
 }

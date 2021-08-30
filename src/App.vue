@@ -1,6 +1,19 @@
 <template>
-    <router-view/>
+    <div class="h-full" :class="{ 'dark': darkMode }">
+        <router-view/>
+    </div>
 </template>
+
+<script>
+export default {
+    name: 'App',
+    computed: {
+        darkMode() {
+            return this.$store.state.darkMode
+        }
+    }
+}
+</script>
 
 <style lang="scss">
 
@@ -27,11 +40,5 @@ html, body {
     -ms-user-select: none;
     user-select: none;
 }
-
-.text-2xs {
-    font-size: 0.65rem;
-    line-height: 0.8rem;
-}
-
 
 </style>

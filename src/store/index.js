@@ -3,6 +3,7 @@ import {createStore} from 'vuex'
 export default createStore({
     state: {
         darkMode: localStorage.getItem('darkMode') ? localStorage.getItem('darkMode') === 'true' : false,
+        nightLight: false,
         startMenuOpen: false,
         NotificationCenterOpen: false
     },
@@ -16,6 +17,9 @@ export default createStore({
         toggleDarkMode(state) {
             state.darkMode = !state.darkMode
             localStorage.setItem('darkMode', state.darkMode)
+        },
+        toggleNightLight(state) {
+            state.nightLight = !state.nightLight
         }
     },
     actions: {
@@ -27,6 +31,9 @@ export default createStore({
         },
         toggleDarkMode(context) {
             context.commit('toggleDarkMode')
+        },
+        toggleNightLight(context) {
+            context.commit('toggleNightLight')
         }
     },
     modules: {}

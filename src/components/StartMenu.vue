@@ -1,5 +1,5 @@
 <template>
-    <div class="start-menu absolute flex flex-col bg-white bg-opacity-90 dark:bg-gray-600 dark:bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-md overflow-hidden duration-200" :class="{ 'show': isOpen }">
+    <div class="start-menu absolute flex flex-col bg-white bg-opacity-80 dark:bg-gray-600 dark:bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-md overflow-hidden duration-200" :class="{ 'show': isOpen }">
 
         <div class="flex flex-col p-6 flex-grow">
 
@@ -15,7 +15,7 @@
                     </button>
                 </div>
                 <div class="grid grid-cols-6">
-                    <div v-for="(item, index) in apps" :key="index" class="flex flex-col justify-center items-center gap-1 py-2 hover:bg-white hover:bg-opacity-50 dark:hover:bg-opacity-10 rounded-sm duration-150">
+                    <div v-for="(item, index) in apps" :key="index" class="flex flex-col justify-center items-center gap-1 py-2 hover:bg-white hover:bg-opacity-50 active:bg-opacity-30 dark:hover:bg-opacity-10 dark:active:bg-opacity-5 rounded-sm duration-150">
                         <img :src="item.icon" width="24"/>
                         <span class="text-2xs font-medium text-gray-800 dark:text-gray-200 text-center">{{ item.label }}</span>
                     </div>

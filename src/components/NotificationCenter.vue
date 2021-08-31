@@ -5,7 +5,7 @@
             <span class="text-xs text-gray-600 dark:text-gray-200">No new notifications</span>
         </div>
         <div class="control-center grid grid-cols-4 gap-1 p-4">
-            <button class="flex flex-col gap-3 bg-white dark:bg-gray-700 dark:text-white px-1 pt-2 pb-1 border border-gray-200 dark:border-gray-600 duration-150" v-for="(item, index) in controls" :key="index" @click="item.active = !item.active; item.click()" :class="{ 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500': item.active }">
+            <button class="flex flex-col items-start gap-3 bg-white dark:bg-gray-700 dark:text-white px-1 pt-2 pb-1 border border-gray-200 dark:border-gray-600 duration-150" v-for="(item, index) in controls" :key="index" @click="item.active = !item.active; item.click()" :class="{ 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500': item.active }">
                 <img :src="item.icon" width="14" class="duration-150" :class="{ 'filter invert': item.active || darkMode }"/>
                 <span>{{ item.label }}</span>
             </button>
@@ -19,6 +19,9 @@ export default {
     computed: {
         darkMode() {
             return this.$store.state.darkMode
+        },
+        nightLight() {
+            return this.$store.state.nightLight
         },
         isOpen () {
             return this.$store.state.NotificationCenterOpen
@@ -34,7 +37,7 @@ export default {
             this.controls = [
                 { label: 'Location', icon: require('@/assets/ui/location.png'), active: false, click: null },
                 { label: 'Battery saver', icon: require('@/assets/ui/battery-saver.png'), active: true, click: null },
-                { label: 'Night light', icon: require('@/assets/ui/night-light.png'), active: false, click: null },
+                { label: 'Night light', icon: require('@/assets/ui/night-light.png'), active: this.nightLight, click: this.toggleNightLight },
                 { label: 'Bluetooth', icon: require('@/assets/ui/bluetooth.png'), active: true, click: null },
                 { label: 'Offline mode', icon: require('@/assets/ui/offline-mode.png'), active: false, click: null },
                 { label: 'Connect', icon: require('@/assets/ui/connect.png'), active: false, click: null },
@@ -48,6 +51,9 @@ export default {
         },
         toggleDarkMode() {
             this.$store.dispatch('toggleDarkMode')
+        },
+        toggleNightLight() {
+            this.$store.dispatch('toggleNightLight')
         }
     },
     mounted() {

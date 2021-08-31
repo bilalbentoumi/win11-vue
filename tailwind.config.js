@@ -10,7 +10,9 @@ module.exports = {
     },
     variants: {
         extend: {
-            scale: ['responsive', 'hover', 'focus', 'active', 'group-hover']
+            scale: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+            backgroundColor: ['active'],
+            backgroundOpacity: ['active'],
         },
     },
     plugins: [],

@@ -2,6 +2,7 @@ import {createStore} from 'vuex'
 
 export default createStore({
     state: {
+        loading: true,
         darkMode: localStorage.getItem('darkMode') ? localStorage.getItem('darkMode') === 'true' : false,
         nightLight: false,
         startMenuOpen: false,
@@ -9,6 +10,9 @@ export default createStore({
         NotificationCenterOpen: false
     },
     mutations: {
+        setLoading(state, status) {
+            state.loading = status
+        },
         toggleStartMenu(state) {
             state.startMenuOpen = !state.startMenuOpen
         },

@@ -1,5 +1,5 @@
 <template>
-    <div class="task-bar w-full bg-white bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-50 backdrop-filter backdrop-blur-lg flex justify-center z-50 relative">
+    <div class="task-bar w-full bg-white bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-50 backdrop-filter backdrop-blur-lg flex justify-center z-40 relative">
         <div class="flex gap-2 p-1">
             <button class="rounded-sm hover:bg-white hover:bg-opacity-80 dark:hover:bg-black dark:hover:bg-opacity-20 duration-200 cursor-auto" v-for="(item, index) in items" :key="index" @click="item.action">
                 <img class="transform active:scale-75 duration-150 px-1.5 py-1" :src="require(`@/assets/icons/${item.icon}.png`)" width="34">

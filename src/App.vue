@@ -1,18 +1,29 @@
 <template>
-    <div class="screen h-full" :class="{ 'dark': darkMode, 'night-light': nightLight }">
+    <div class="screen h-full relative" :class="{ 'dark': darkMode, 'night-light': nightLight }">
         <router-view/>
+    </div>
+    <div class="absolute left-0 top-0 w-full h-full bg-black flex flex-col justify-center items-center w-full h-full overflow-hidden z-50" v-if="isLoading">
+        <img src="@/assets/boot-logo.png" width="180" class="mb-48"/>
+        <Loader/>
     </div>
 </template>
 
 <script>
+import Loader from './components/Loader'
 export default {
     name: 'App',
+    components: {
+        Loader
+    },
     computed: {
         darkMode() {
             return this.$store.state.darkMode
         },
         nightLight() {
             return this.$store.state.nightLight
+        },
+        isLoading() {
+            return this.$store.state.loading
         }
     }
 }

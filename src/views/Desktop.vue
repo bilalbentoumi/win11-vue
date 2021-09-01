@@ -16,13 +16,20 @@ import NotificationCenter from '../components/NotificationCenter'
 import Calendar from '../components/Calendar'
 
 export default {
-    name: 'Home',
+    name: 'Desktop',
     components: {
         Workspace,
         TaskBar,
         StartMenu,
         Calendar,
         NotificationCenter
+    },
+    mounted() {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                this.$store.commit('setLoading', false)
+            }, 2000)
+        })
     }
 }
 </script>

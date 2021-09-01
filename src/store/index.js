@@ -5,11 +5,15 @@ export default createStore({
         darkMode: localStorage.getItem('darkMode') ? localStorage.getItem('darkMode') === 'true' : false,
         nightLight: false,
         startMenuOpen: false,
+        calendarOpen: false,
         NotificationCenterOpen: false
     },
     mutations: {
         toggleStartMenu(state) {
             state.startMenuOpen = !state.startMenuOpen
+        },
+        toggleCalendar(state) {
+            state.calendarOpen = !state.calendarOpen
         },
         toggleNotificationCenter(state) {
             state.NotificationCenterOpen = !state.NotificationCenterOpen
@@ -25,6 +29,9 @@ export default createStore({
     actions: {
         toggleStartMenu(context) {
             context.commit('toggleStartMenu')
+        },
+        toggleCalendar(context) {
+            context.commit('toggleCalendar')
         },
         toggleNotificationCenter(context) {
             context.commit('toggleNotificationCenter')

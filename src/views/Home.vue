@@ -3,6 +3,7 @@
         <Workspace/>
         <TaskBar/>
         <StartMenu/>
+        <Calendar/>
         <NotificationCenter/>
     </div>
 </template>
@@ -12,6 +13,7 @@ import Workspace from '../components/Workspace'
 import TaskBar from '../components/TaskBar'
 import StartMenu from '../components/StartMenu'
 import NotificationCenter from '../components/NotificationCenter'
+import Calendar from '../components/Calendar'
 
 export default {
     name: 'Home',
@@ -19,6 +21,7 @@ export default {
         Workspace,
         TaskBar,
         StartMenu,
+        Calendar,
         NotificationCenter
     }
 }

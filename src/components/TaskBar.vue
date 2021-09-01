@@ -4,26 +4,6 @@
             <button class="rounded-sm hover:bg-white hover:bg-opacity-80 dark:hover:bg-black dark:hover:bg-opacity-20 duration-200 cursor-auto" v-for="(item, index) in items" :key="index" @click="item.action">
                 <img class="transform active:scale-75 duration-150 px-1.5 py-1" :src="require(`@/assets/icons/${item.icon}.png`)" width="34">
             </button>
-<!--            <button class="rounded-sm hover:bg-white hover:bg-opacity-80 dark:hover:bg-black dark:hover:bg-opacity-20 duration-200 cursor-auto">-->
-<!--                <img class="transform active:scale-75 duration-150 px-1.5 py-1" src="@/assets/icons/search-light.png" width="34" v-if="darkMode">-->
-<!--                <img class="transform active:scale-75 duration-150 px-1.5 py-1" src="@/assets/icons/search-dark.png" width="34" v-else>-->
-<!--            </button>-->
-<!--            <button class="rounded-sm hover:bg-white hover:bg-opacity-80 dark:hover:bg-black dark:hover:bg-opacity-20 duration-200 cursor-auto">-->
-<!--                <img class="transform active:scale-75 duration-150 px-1.5 py-1" src="@/assets/icons/widget.png" width="34">-->
-<!--            </button>-->
-<!--            <button class="rounded-sm hover:bg-white hover:bg-opacity-80 dark:hover:bg-black dark:hover:bg-opacity-20 duration-200 cursor-auto">-->
-<!--                <img class="transform active:scale-75 duration-150 px-1.5 py-1" src="@/assets/icons/settings.png" width="34">-->
-<!--            </button>-->
-<!--            <button class="rounded-sm hover:bg-white hover:bg-opacity-80 dark:hover:bg-black dark:hover:bg-opacity-20 duration-200 cursor-auto">-->
-<!--                <img class="transform active:scale-75 duration-150 px-1.5 py-1" src="@/assets/icons/explorer.png" width="34">-->
-<!--            </button>-->
-<!--            <button class="rounded-sm hover:bg-white hover:bg-opacity-80 dark:hover:bg-black dark:hover:bg-opacity-20 duration-200 cursor-auto">-->
-<!--                <img class="transform active:scale-75 duration-150 px-1.5 py-1" src="@/assets/icons/edge.png" width="34">-->
-<!--            </button>-->
-<!--            <button class="rounded-sm hover:bg-white hover:bg-opacity-80 dark:hover:bg-black dark:hover:bg-opacity-20 duration-200 cursor-auto">-->
-<!--                <img class="transform active:scale-75 duration-150 px-1.5 py-1" src="@/assets/icons/store-dark.png" width="34" v-if="!darkMode">-->
-<!--                <img class="transform active:scale-75 duration-150 px-1.5 py-1" src="@/assets/icons/store-light.png" width="34" v-else>-->
-<!--            </button>-->
         </div>
         <div class="flex absolute right-0 bottom-0 h-full hidden md:flex">
             <div class="inline-flex justify-center items-center w-8 h-full">
@@ -37,11 +17,11 @@
             <div class="inline-flex justify-center items-center w-8 h-full">
                 <img width="22" src="@/assets/ui/audio.png" :class="{ 'filter invert': darkMode }"/>
             </div>
-            <div class="flex flex-col text-xs justify-center items-center px-2" :class="{ 'text-white': darkMode}">
+            <div class="flex flex-col text-xs justify-center items-center px-2 hover:bg-gray-300 dark:hover:bg-gray-700 duration-150" :class="{ 'text-white': darkMode}" @click="toggleCalendar()">
                 <span>{{ today.time }}</span>
                 <span>{{ today.date }}</span>
             </div>
-            <div class="inline-flex justify-center items-center w-8 h-full hover:bg-gray-300 dark:hover:bg-gray-600 duration-100" @click="toggleNotificationCenter()">
+            <div class="inline-flex justify-center items-center w-8 h-full hover:bg-gray-300 dark:hover:bg-gray-700 duration-150" @click="toggleNotificationCenter()">
                 <img width="16" src="@/assets/ui/notification-center.png" :class="{ 'filter invert': !darkMode }"/>
             </div>
             <div class="h-full w-2 border-l border-gray-300 dark:border-gray-600 ml-2"></div>
@@ -85,6 +65,9 @@ export default {
         },
         toggleStartMenu() {
             this.$store.dispatch('toggleStartMenu')
+        },
+        toggleCalendar() {
+            this.$store.dispatch('toggleCalendar')
         },
         toggleNotificationCenter() {
             this.$store.dispatch('toggleNotificationCenter')

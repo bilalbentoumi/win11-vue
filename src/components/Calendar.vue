@@ -115,12 +115,14 @@ export default {
     height: 400px;
     transform: scale(0.9);
     opacity: 0;
+    pointer-events: none;
 }
 
 .calendar.show {
     bottom: 50px;
     transform: scale(1);
     opacity: 1;
+    pointer-events: auto;
 }
 
 </style>

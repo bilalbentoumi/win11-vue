@@ -10,11 +10,13 @@ Blur not working in Firefox browser.
 
 
 ## Screenshots
-![pic1](./public/screenshots/light.png) ![pic2](./public/screenshots/dark.png)
+![windows11-light-mode](./public/screenshots/light.png)
+![windows11-dark-mode](./public/screenshots/dark.png)
 
 ## Features
 - Light / Dark modes
 - Start menu
+- Calendar Widget
 - Notification center
 
 ## Technologies

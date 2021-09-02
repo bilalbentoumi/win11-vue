@@ -22,10 +22,10 @@
             </button>
         </div>
         <div class="flex-grow grid items-center grid-rows-6 grid-cols-7 p-4 gap-2">
-            <div v-for="(day, index) in weekDays" :key="index" class="flex justify-center items-center text-sm text-gray-600 dark:text-gray-100">
+            <div v-for="(day, index) in weekDays" :key="'day_' + index" class="flex justify-center items-center text-sm text-gray-600 dark:text-gray-100">
                 {{ day }}
             </div>
-            <div v-for="(day, index) in days" :key="index" class="flex justify-center items-center text-sm rounded-full w-8 h-8 duration-150" :class="getClasses(day)">
+            <div v-for="(day, index) in days" :key="'date_' + index" class="flex justify-center items-center text-sm rounded-full w-8 h-8 duration-150" :class="getClasses(day)">
                 {{ day.day }}
             </div>
         </div>

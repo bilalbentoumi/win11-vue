@@ -35,17 +35,17 @@ export default {
     methods: {
         initItems() {
             this.controls = [
-                { label: 'Location', icon: require('@/assets/ui/location.png'), active: false, click: null },
-                { label: 'Battery saver', icon: require('@/assets/ui/battery-saver.png'), active: true, click: null },
+                { label: 'Location', icon: require('@/assets/ui/location.png'), active: false, click: this.none },
+                { label: 'Battery saver', icon: require('@/assets/ui/battery-saver.png'), active: true, click: this.none },
                 { label: 'Night light', icon: require('@/assets/ui/night-light.png'), active: this.nightLight, click: this.toggleNightLight },
-                { label: 'Bluetooth', icon: require('@/assets/ui/bluetooth.png'), active: true, click: null },
-                { label: 'Offline mode', icon: require('@/assets/ui/offline-mode.png'), active: false, click: null },
-                { label: 'Connect', icon: require('@/assets/ui/connect.png'), active: false, click: null },
-                { label: 'Project', icon: require('@/assets/ui/project.png'), active: false, click: null },
-                { label: 'Network', icon: require('@/assets/ui/network.png'), active: false, click: null },
-                { label: 'Sharing', icon: require('@/assets/ui/sharing.png'), active: false, click: null },
-                { label: 'Tablet mode', icon: require('@/assets/ui/tablet-mode.png'), active: false, click: null },
-                { label: 'Security', icon: require('@/assets/ui/security.png'), active: false, click: null },
+                { label: 'Bluetooth', icon: require('@/assets/ui/bluetooth.png'), active: true, click: this.none },
+                { label: 'Offline mode', icon: require('@/assets/ui/offline-mode.png'), active: false, click: this.none },
+                { label: 'Connect', icon: require('@/assets/ui/connect.png'), active: false, click: this.none },
+                { label: 'Project', icon: require('@/assets/ui/project.png'), active: false, click: this.none },
+                { label: 'Network', icon: require('@/assets/ui/network.png'), active: false, click: this.none },
+                { label: 'Sharing', icon: require('@/assets/ui/sharing.png'), active: false, click: this.none },
+                { label: 'Tablet mode', icon: require('@/assets/ui/tablet-mode.png'), active: false, click: this.none },
+                { label: 'Security', icon: require('@/assets/ui/security.png'), active: false, click: this.none },
                 { label: 'Dark mode', icon: require('@/assets/ui/focus-assist.png'), active: this.darkMode, click: this.toggleDarkMode }
             ]
         },
@@ -54,7 +54,8 @@ export default {
         },
         toggleNightLight() {
             this.$store.dispatch('toggleNightLight')
-        }
+        },
+        none() {}
     },
     mounted() {
         this.initItems()

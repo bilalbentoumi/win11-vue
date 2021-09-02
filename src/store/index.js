@@ -1,7 +1,10 @@
-import {createStore} from 'vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-export default createStore({
-    state: {
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state: {
         loading: true,
         darkMode: localStorage.getItem('darkMode') ? localStorage.getItem('darkMode') === 'true' : false,
         nightLight: false,

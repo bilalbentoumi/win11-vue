@@ -42,12 +42,12 @@ export default {
             let iconTheme = this.darkMode ? 'light' : 'dark'
             return [
                 { icon: 'start', action: this.toggleStartMenu },
-                { icon: 'search-' + iconTheme, action: null },
-                { icon: 'widget', action: null },
-                { icon: 'settings', action: null },
-                { icon: 'explorer', action: null },
-                { icon: 'edge', action: null },
-                { icon: 'store-' + iconTheme, action: null }
+                { icon: 'search-' + iconTheme, action: this.none },
+                { icon: 'widget', action: this.none },
+                { icon: 'settings', action: this.none },
+                { icon: 'explorer', action: this.none },
+                { icon: 'edge', action: this.none },
+                { icon: 'store-' + iconTheme, action: this.none }
             ]
         }
     },
@@ -71,7 +71,8 @@ export default {
         },
         toggleNotificationCenter() {
             this.$store.dispatch('toggleNotificationCenter')
-        }
+        },
+        none() {}
     },
     mounted() {
         this.updateTime()

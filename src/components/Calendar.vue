@@ -25,7 +25,7 @@
             <div v-for="(day, index) in weekDays" :key="index" class="flex justify-center items-center text-sm text-gray-600 dark:text-gray-100">
                 {{ day }}
             </div>
-            <div v-for="(day, index) in days" :key="index" class="flex justify-center items-center text-sm rounded-full w-8 h-8 duration-150" :class="{ 'text-gray-600 hover:bg-gray-600 hover:bg-opacity-10 dark:hover:bg-white dark:hover:bg-opacity-10 dark:text-gray-300': day.state === 0, 'text-gray-400 dark:text-gray-500': day.state !== 0  }">
+            <div v-for="(day, index) in days" :key="index" class="flex justify-center items-center text-sm rounded-full w-8 h-8 duration-150" :class="getClasses(day)">
                 {{ day.day }}
             </div>
         </div>
@@ -51,6 +51,13 @@ export default {
         }
     },
     methods: {
+        getClasses(date) {
+            return {
+                'text-gray-600 bg-transparent hover:bg-gray-600 hover:bg-opacity-10 dark:text-gray-300 dark:hover:bg-white dark:hover:bg-opacity-10': date.state === 0 && !date.today,
+                'bg-blue-400 hover:bg-blue-400 text-white': date.today,
+                'text-gray-400 dark:text-gray-500': date.state !== 0
+            }
+        },
         addMonth() {
             this.date.add('1', 'months')
             this.updateTime()
@@ -70,17 +77,20 @@ export default {
                 if (i < firstDay) {
                     daysObject[i] = {
                         day: this.date.clone().subtract((firstDay - i), 'days').format('D'),
-                        state: -1
+                        state: -1,
+                        today: false
                     }
                 } else if (i < (daysNumber + firstDay)) {
                     daysObject[i] = {
                         day: i - firstDay + 1,
-                        state: 0
+                        state: 0,
+                        today: this.currentDate.date() === (i - firstDay + 1) && this.currentDate.month() === this.date.month()
                     }
                 } else {
                     daysObject[i] = {
                         day: this.date.clone().add((i - daysNumber - firstDay), 'days').format('D'),
-                        state: 1
+                        state: 1,
+                        today: false
                     }
                 }
             }

@@ -23,13 +23,6 @@ export default {
         StartMenu,
         Calendar,
         NotificationCenter
-    },
-    mounted() {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                this.$store.commit('setLoading', false)
-            }, 2000)
-        })
     }
 }
 </script>

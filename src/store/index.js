@@ -4,51 +4,82 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
+    state: {
+
         loading: true,
+
         darkMode: localStorage.getItem('darkMode') ? localStorage.getItem('darkMode') === 'true' : false,
         nightLight: false,
+
         startMenuOpen: false,
         calendarOpen: false,
-        NotificationCenterOpen: false
+        notificationCenterOpen: false,
+
+        apps: {
+            vscode: { name: 'Visual Studio Code', isMaximized: false, isMinimized: false, isActive: false }
+        }
+
+    },
+    getters: {
+        loading: state => state.loading
     },
     mutations: {
-        setLoading(state, status) {
+
+        SET_LOADING(state, status) {
             state.loading = status
         },
-        toggleStartMenu(state) {
-            state.startMenuOpen = !state.startMenuOpen
+
+        SET_START_MENU_OPEN(state, status) {
+            state.startMenuOpen = status
         },
-        toggleCalendar(state) {
-            state.calendarOpen = !state.calendarOpen
+        SET_CALENDAR_OPEN(state, status) {
+            state.calendarOpen = status
         },
-        toggleNotificationCenter(state) {
-            state.NotificationCenterOpen = !state.NotificationCenterOpen
+        SET_NOTIFICATION_CENTER_OPEN(state, status) {
+            state.notificationCenterOpen = status
         },
-        toggleDarkMode(state) {
-            state.darkMode = !state.darkMode
-            localStorage.setItem('darkMode', state.darkMode)
+
+        SET_DARK_MODE_ENABLED(state, status) {
+            state.darkMode = status
         },
-        toggleNightLight(state) {
-            state.nightLight = !state.nightLight
+        SET_NIGHT_LIGHT_ENABLED(state, status) {
+            state.nightLight = status
         }
+
     },
     actions: {
+
+        showBootScreen(context) {
+            context.commit('SET_LOADING', true)
+        },
+        hideBootScreen(context) {
+            context.commit('SET_LOADING', false)
+        },
+
         toggleStartMenu(context) {
-            context.commit('toggleStartMenu')
+            context.commit('SET_NOTIFICATION_CENTER_OPEN', false)
+            context.commit('SET_CALENDAR_OPEN', false)
+            context.commit('SET_START_MENU_OPEN', !context.state.startMenuOpen)
         },
         toggleCalendar(context) {
-            context.commit('toggleCalendar')
+            context.commit('SET_NOTIFICATION_CENTER_OPEN', false)
+            context.commit('SET_START_MENU_OPEN', false)
+            context.commit('SET_CALENDAR_OPEN', !context.state.calendarOpen)
         },
         toggleNotificationCenter(context) {
-            context.commit('toggleNotificationCenter')
+            context.commit('SET_CALENDAR_OPEN', false)
+            context.commit('SET_START_MENU_OPEN', false)
+            context.commit('SET_NOTIFICATION_CENTER_OPEN', !context.state.notificationCenterOpen)
         },
+
         toggleDarkMode(context) {
-            context.commit('toggleDarkMode')
+            context.commit('SET_DARK_MODE_ENABLED', !context.state.darkMode)
+            localStorage.setItem('darkMode', context.state.darkMode)
         },
         toggleNightLight(context) {
-            context.commit('toggleNightLight')
+            context.commit('SET_NIGHT_LIGHT_ENABLED', !context.state.nightLight)
         }
+
     },
     modules: {}
 })

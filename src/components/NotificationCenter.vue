@@ -14,18 +14,16 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
     name: 'NotificationCenter',
     computed: {
-        darkMode() {
-            return this.$store.state.darkMode
-        },
-        nightLight() {
-            return this.$store.state.nightLight
-        },
-        isOpen () {
-            return this.$store.state.NotificationCenterOpen
-        }
+        ...mapState({
+            isOpen: state => state.notificationCenterOpen,
+            darkMode: state => state.darkMode,
+            nightLight: state => state.nightLight,
+        })
     },
     data() {
         return {

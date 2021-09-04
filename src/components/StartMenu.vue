@@ -60,15 +60,15 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
     name: 'StartMenu',
     computed: {
-        darkMode() {
-            return this.$store.state.darkMode
-        },
-        isOpen () {
-            return this.$store.state.startMenuOpen
-        }
+        ...mapState({
+            isOpen: state => state.startMenuOpen,
+            darkMode: state => state.darkMode
+        })
     },
     data() {
         return {

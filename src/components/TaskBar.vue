@@ -1,10 +1,12 @@
 <template>
     <div class="task-bar w-full bg-white bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-50 backdrop-filter backdrop-blur-lg flex justify-center z-40 relative">
+
         <div class="flex gap-2 p-1">
-            <button class="rounded-sm hover:bg-white hover:bg-opacity-80 dark:hover:bg-black dark:hover:bg-opacity-20 duration-200 cursor-auto" v-for="(item, index) in items" :key="index" @click="item.action">
+            <button class="rounded-sm hover:bg-white hover:bg-opacity-80 dark:hover:bg-black dark:hover:bg-opacity-20 duration-200 cursor-auto" v-for="(item, index) in items" :key="index" @click="item.action(); openApp(item.name)">
                 <img class="transform active:scale-75 duration-150 px-1.5 py-1" :src="require(`@/assets/icons/${item.icon}.png`)" width="34">
             </button>
         </div>
+
         <div class="flex absolute right-0 bottom-0 h-full hidden md:flex">
             <div class="inline-flex justify-center items-center w-8 h-full">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 10px; height: 10px;">
@@ -26,28 +28,31 @@
             </div>
             <div class="h-full w-2 border-l border-gray-300 dark:border-gray-600 ml-2"></div>
         </div>
+
     </div>
 </template>
 
 <script>
 import moment from 'moment'
+import {mapState} from 'vuex'
 
 export default {
     name: 'TaskBar',
     computed: {
-        darkMode() {
-            return this.$store.state.darkMode
-        },
+        ...mapState({
+            darkMode: state => state.darkMode
+        }),
         items() {
             let iconTheme = this.darkMode ? 'light' : 'dark'
             return [
-                { icon: 'start', action: this.toggleStartMenu },
-                { icon: 'search-' + iconTheme, action: this.none },
-                { icon: 'widget', action: this.none },
-                { icon: 'settings', action: this.none },
-                { icon: 'explorer', action: this.none },
-                { icon: 'edge', action: this.none },
-                { icon: 'store-' + iconTheme, action: this.none }
+                { name: 'start', icon: 'start', action: this.toggleStartMenu },
+                { name: 'search', icon: 'search-' + iconTheme, action: this.none },
+                { name: 'widget', icon: 'widget', action: this.none },
+                { name: 'settings', icon: 'settings', action: this.none },
+                { name: 'explorer', icon: 'explorer', action: this.none },
+                { name: 'edge', icon: 'edge', action: this.none },
+                { name: 'store', icon: 'store-' + iconTheme, action: this.none },
+                { name: 'vscode', icon: 'vscode', action: this.none },
             ]
         }
     },
@@ -72,7 +77,21 @@ export default {
         toggleNotificationCenter() {
             this.$store.dispatch('toggleNotificationCenter')
         },
-        none() {}
+        none() {},
+        openApp(appName) {
+
+            if (this.$store.state.apps[appName]) {
+
+                if (this.$store.state.apps[appName].isActive) {
+                    this.$store.state.apps[appName].isMinimized = !this.$store.state.apps[appName].isMinimized
+                } else {
+                    this.$store.state.apps[appName].isMinimized = false
+                    this.$store.state.apps[appName].isActive = true
+                }
+
+            }
+
+        }
     },
     mounted() {
         this.updateTime()

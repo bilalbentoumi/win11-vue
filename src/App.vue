@@ -29,6 +29,13 @@ export default {
         isLoading() {
             return this.$store.state.loading
         }
+    },
+    mounted() {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                this.$store.dispatch('hideBootScreen')
+            }, 2000)
+        })
     }
 }
 </script>

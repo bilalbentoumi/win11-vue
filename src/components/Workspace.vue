@@ -1,5 +1,6 @@
 <template>
     <div class="desktop-icons flex-grow p-1">
+
         <grid-layout
             :layout.sync="items"
             :col-num="cols"
@@ -21,28 +22,38 @@
             </grid-item>
 
         </grid-layout>
+
+        <transition name="window">
+            <VSCode v-show="apps.vscode.isActive"/>
+        </transition>
+
     </div>
 </template>
 
 <script>
 import VueGridLayout from 'vue-grid-layout'
+import VSCode from './apps/VSCode'
+import {mapState} from 'vuex'
 
 export default {
     name: 'Workspace',
     components: {
         GridLayout: VueGridLayout.GridLayout,
-        GridItem: VueGridLayout.GridItem
+        GridItem: VueGridLayout.GridItem,
+        VSCode
     },
     computed: {
-        darkMode() {
-            return this.$store.state.darkMode
-        },
+        ...mapState({
+            darkMode: state => state.darkMode,
+            apps: state => state.apps,
+        }),
         iconTheme() {
             return this.darkMode ? 'light' : 'dark'
         }
     },
     data() {
         return {
+            shownApps: ['vscode'],
             cols: 15,
             rows: 15,
             items: [],
@@ -128,6 +139,22 @@ export default {
         background: #ceceff !important;
     }
 
+}
+
+
+.window-enter,
+.window-leave-to {
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.window-enter-active,
+.window-leave-active {
+    transition: all 0.3s;
 }
 
 </style>

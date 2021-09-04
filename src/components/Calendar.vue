@@ -34,13 +34,14 @@
 
 <script>
 import moment from 'moment'
+import {mapState} from 'vuex'
 
 export default {
     name: 'Calendar',
     computed: {
-        isOpen () {
-            return this.$store.state.calendarOpen
-        }
+        ...mapState({
+            isOpen: state => state.calendarOpen
+        })
     },
     data() {
         return {
